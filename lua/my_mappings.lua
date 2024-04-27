@@ -84,8 +84,14 @@ vim.keymap.set('n','<leader>ev',':e $MYVIMRC<CR>', {desc = 'Change vimrc file'})
 vim.keymap.set('n','<F3>',': mksession! /home/$USER/.vim/files/nacho_vim_session<CR>', {desc = 'Make the default session'})
 vim.keymap.set('n','<F4>',': source! /home/$USER/.vim/files/nacho_vim_session<CR>', {desc = 'Source the default session'})
 
-#Go only to matches in this file, does the same with both mappings
+-- Save in insert mode
+vim.keymap.set('i','kj','<Esc>:w<CR>', {desc='Save in insert mode'})
+
+--Save in normal mode
+vim.keymap.set('n', 'wf', ':w<CR>', {desc = 'Save in normal mode'})
+
+-- Go only to matches in this file, does the same with both mappings
 -- nnoremap ]g :execute "g/\\<" . expand("<cword>") . "\\>"<CR>:let nr = input("Which one: ")<Bar>exe "normal " . nr ."G"<CR>
 -- nnoremap [g :execute "g/\\<" . expand("<cword>") . "\\>"<CR>
-vim.keymap.set('n', ']g', "g/\\<" . expand("<cword>") . "\\>"<CR>:let nr = input("Which one: ")<Bar>exe "normal " . nr ."G"<CR>, { expr = true, desc = 'find this word in file'})
+-- vim.keymap.set('n', ']g', "g/\\<" . expand("<cword>") . "\\>"<CR>:let nr = input("Which one: ")<Bar>exe "normal " . nr ."G"<CR>", { expr = true, desc = 'find this word in file'})
  
