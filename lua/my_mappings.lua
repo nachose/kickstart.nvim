@@ -1,6 +1,25 @@
 
--- My personal mappings for this thingie.
 
+-- [[ Basic Keymaps ]]
+
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', 'viw', { silent = true })
+
+-- Remap for dealing with word wrap
+-- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+-- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+
+-- My personal mappings for this thingie.
+-- My keymaps --
+--
 
 -- Window size
 vim.keymap.set('n','<leader>++','<C-w>10+', {desc = 'Do 10 bigger in vertical size'})
@@ -15,8 +34,8 @@ vim.keymap.set('n','<leader><<','<C-w>10<', {desc = 'Do 10 bigger in horizontal 
 -- This should work, I don't understand why it doesn't.
 -- Lua does not have ternary operator ?, so the idiom is a and b or c for the corresponding 
 -- c a ? b or c, because and has more priority than or.
-vim.keymap.set('c','<c-n>', function() return vim.fn.wildmenumode() == 1 and '<Tab>' or '<down>' end, {expr = true, desc = 'If wildmenu then do down instead of c-n'})
-vim.keymap.set('c','<c-p>', function() return vim.fn.wildmenumode() == 1 and '<s-Tab>' or '<up>' end, {expr = true, desc = 'If wildmenu then do up instead of c-p'})
+vim.keymap.set('c','<c-n>', function() return vim.fn.wildmenumode() == 1 and '<c-n>' or '<down>' end, {expr = true, desc = 'If wildmenu then do down instead of c-n'})
+vim.keymap.set('c','<c-p>', function() return vim.fn.wildmenumode() == 1 and '<c-p>' or '<up>' end, {expr = true, desc = 'If wildmenu then do up instead of c-p'})
 -- vim.keymap.set('c','<c-n>','<down>', {desc = 'If wildmenu then do down instead of c-n'})
 -- vim.keymap.set('c','<c-p>','<up>', {desc = 'If wildmenu then do up instead of c-p'})
 
@@ -90,8 +109,10 @@ vim.keymap.set('i','kj','<Esc>:w<CR>', {desc='Save in insert mode'})
 --Save in normal mode
 vim.keymap.set('n', 'wf', ':w<CR>', {desc = 'Save in normal mode'})
 
+
+
 -- Go only to matches in this file, does the same with both mappings
 -- nnoremap ]g :execute "g/\\<" . expand("<cword>") . "\\>"<CR>:let nr = input("Which one: ")<Bar>exe "normal " . nr ."G"<CR>
 -- nnoremap [g :execute "g/\\<" . expand("<cword>") . "\\>"<CR>
--- vim.keymap.set('n', ']g', "g/\\<" . expand("<cword>") . "\\>"<CR>:let nr = input("Which one: ")<Bar>exe "normal " . nr ."G"<CR>", { expr = true, desc = 'find this word in file'})
- 
+vim.keymap.set('n', ']g', ':execute "g/\\<" . expand("<cword>") . "\\>"<CR>:let nr = input("Which one: ")<Bar>exe "normal " . nr ."G"<CR>', {desc = 'Find references in file'})
+vim.keymap.set('n', '[g', ':execute "g/\\<" . expand("<cword>") . "\\>"<CR>', {desc = 'Find references in file'})
