@@ -34,10 +34,12 @@ vim.keymap.set('n','<leader><<','<C-w>10<', {desc = 'Do 10 bigger in horizontal 
 -- This should work, I don't understand why it doesn't.
 -- Lua does not have ternary operator ?, so the idiom is a and b or c for the corresponding 
 -- c a ? b or c, because and has more priority than or.
-vim.keymap.set('c','<c-n>', function() return vim.fn.wildmenumode() == 1 and '<c-n>' or '<down>' end, {expr = true, desc = 'If wildmenu then do down instead of c-n'})
-vim.keymap.set('c','<c-p>', function() return vim.fn.wildmenumode() == 1 and '<c-p>' or '<up>' end, {expr = true, desc = 'If wildmenu then do up instead of c-p'})
+-- vim.keymap.set('c','<c-n>', function() return vim.fn.wildmenumode() == 1 and '<c-n>' or '<down>' end, {expr = true, desc = 'If wildmenu then do down instead of c-n'})
+-- vim.keymap.set('c','<c-p>', function() return vim.fn.wildmenumode() == 1 and '<c-p>' or '<up>' end, {expr = true, desc = 'If wildmenu then do up instead of c-p'})
 -- vim.keymap.set('c','<c-n>','<down>', {desc = 'If wildmenu then do down instead of c-n'})
 -- vim.keymap.set('c','<c-p>','<up>', {desc = 'If wildmenu then do up instead of c-p'})
+vim.keymap.set('c','<c-n>','<down>', {desc = 'If wildmenu then do down instead of c-n'})
+vim.keymap.set('c','<c-p>','<up>', {desc = 'If wildmenu then do up instead of c-p'})
 
 -- <C-l> redraws the screen in normal mode, this redraws and eliminates highlight
 vim.keymap.set('n','<c-l>',':nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>', {desc = 'Redraw and remove highlight'})
@@ -49,6 +51,7 @@ vim.keymap.set('n','wf',':w<CR>', {desc = 'Save file'})
 -- Do not do this in visual mode (interferes with selection)
 -- or command mode (doesn't allow searching for kj)
 vim.keymap.set('i','kj','<esc>:w<CR>', {desc = 'Save file'})
+
 
 -- Open help in vertical split in the Right
 -- Combine vertical[vert] and botright[bo] commands

@@ -45,6 +45,8 @@ require('lazy').setup({
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-cmdline',
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
@@ -68,10 +70,13 @@ require('lazy').setup({
       },
       signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
       numhl      = true, -- Toggle with `:Gitsigns toggle_numhl`
-      linehl     = true, -- Toggle with `:Gitsigns toggle_linehl`
+      linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
       word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
       watch_gitdir = {
         follow_files = true
+      },
+      diff_opts = {
+        internal = true,
       },
       auto_attach = true,
       attach_to_untracked = false,
@@ -185,20 +190,17 @@ require('lazy').setup({
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
   -- { import = 'custom.plugins' },
-
+  --
+  -- Startup time in /tmp/nvim-startuptime
+  'nichobi/nvim-startup.lua',
   {
-    "TobinPalmer/Tip.nvim",
-    event = "VimEnter",
-    init = function()
-      -- Default config
-      -- @type Tip.config
-      require("tip").setup({
-        seconds = 2,
-        title = "Tip!",
-        url = "https://vtip.43z.one", -- Or https://vimiscool.tech/neotip
-      })
-    end,
+    "startup-nvim/startup.nvim",
+      dependencies = {"nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim"},
+      config = function()
+        require"startup".setup()
+      end
   }
+
 }, {})
 
 -- [[ Configure Telescope ]]
