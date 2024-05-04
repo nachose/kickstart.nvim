@@ -47,10 +47,37 @@ require('lazy').setup({
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-cmdline',
-
+      },
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
-    },
+      config = function()
+        local cmp = require 'cmp'
+        cmp.setup.cmdline('/', {
+          mapping = cmp.mapping.preset.cmdline(),
+          sources = {
+            { name = 'buffer' }
+          }
+        })
+        cmp.setup.cmdline(':', {
+          mapping = cmp.mapping.preset.cmdline(),
+          sources = cmp.config.sources({
+            { name = 'path' }
+            }, 
+            {
+              {
+                name = 'cmdline',
+                option = {
+                  ignore_cmds = { 'Man', '!' }
+                }
+              }
+            })
+        })
+        cmp.setup {
+          sources = {
+          { name = 'nvim_lsp' }
+          }
+        }
+      end,
   },
 
   -- Useful plugin to show you pending keybinds.
